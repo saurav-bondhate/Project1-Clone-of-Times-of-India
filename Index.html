@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d373d1d229.js" crossorigin="anonymous"></script>
+    <title>Times of India Clone</title>
+</head>
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .body {
+        box-sizing: content-box;
+    }
+
+    .header {
+        background-color: rgb(32, 29, 29);
+        padding: 5px 150px;
+        color: whitesmoke;
+        border-bottom: darkgray 1px solid;
+        margin: 0%;
+    }
+
+    .header a {
+        color: whitesmoke;
+        text-decoration: none;
+        float: left;
+        padding: 0px 10px;
+    }
+
+    .dropbtn {
+        color: whitesmoke;
+    }
+
+    .dropdown {
+        position: relative;
+        display: block;
+        float: left;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .header p {
+        float: right;
+        margin-right: 0%;
+        padding: 0%;
+    }
+
+    .title {
+        background-color: black;
+        margin: 0%;
+        padding-bottom: 20px;
+    }
+
+    .title h1 {
+        margin: 0%;
+        display: flex;
+        justify-content: center;
+        font-size: 50px;
+        color: whitesmoke;
+    }
+
+    .title h2 {
+        margin: 0%;
+        display: flex;
+        justify-content: center;
+        color: whitesmoke;
+
+    }
+
+    .nav {
+        background-color: rgb(206, 37, 37);
+        display: block;
+        padding: 10px 200px;
+    }
+
+    .nav a {
+        color: whitesmoke;
+        text-decoration: none;
+        padding: 10px;
+        transition: 1s;
+    }
+
+    .overlay {
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow-y: hidden;
+        transition: 0.5s;
+        display: block;
+    }
+
+    .overlay-content {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+        color: whitesmoke;
+    }
+
+    .nav .overlay-content h3 {
+        display: block;
+        justify-content: center;
+    }
+
+    .overlay .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px;
+    }
+
+    .nav a:hover {
+        background-color: whitesmoke;
+        color: black;
+    }
+
+    .nav a:last-child {
+        margin-left: 200px;
+    }
+
+    .stick {
+        position: fixed;
+        top: 0%;
+        width: 100%;
+    }
+
+    .content {
+        padding: 15px 200px;
+        display: grid;
+        grid-template-columns: 4fr 2fr;
+        grid-gap: 20px;
+        height: auto;
+    }
+
+    .content .main img {
+        width: 90px;
+        height: 70px;
+        float: left;
+        padding: 0px 15px;
+    }
+
+    .content .main h4 {
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .content .main h6 {
+        color: darkgray;
+        overflow: hidden;
+        padding: 10px 0px;
+    }
+
+    .content .main .button {
+        display: flex;
+        justify-content: center;
+    }
+
+    .content .main .button button {
+        padding: 5px;
+        margin: 10px;
+    }
+
+    .content .side {
+        float: right;
+    }
+
+    .content .side .sidenav {
+        display: block;
+        background-color: gray;
+        color: whitesmoke;
+        padding: 5px 5px;
+        border-bottom: black 2px solid;
+    }
+
+    .content .side .sidenav a {
+        padding: 5px;
+        transition: 2s;
+        color: whitesmoke;
+        text-decoration: none;
+    }
+
+    .content .side .sidenav a:hover {
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .content .side h6 {
+        padding: 5px 0px;
+    }
+
+    .content .side .section img {
+        width: 70px;
+        height: 50px;
+        float: left;
+        padding: 5px;
+    }
+
+    .content .side .section h6 {
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    .link {
+        background-color: black;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        padding: 10px 100px;
+    }
+
+    .link .l1 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+    }
+
+    .link .l1 .l2 {
+        padding: 10px;
+    }
+
+    .link .l1 .l2 a {
+        color: whitesmoke;
+        text-decoration: none;
+        transition: 1s;
+        display: block;
+        font-size: 15px;
+    }
+
+    .link .l1 .l2 a:hover {
+        color: gray;
+    }
+
+    .footer {
+        background-color: rgb(24, 20, 20);
+        height: 25px;
+        justify-content: center;
+        color: gray;
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div class="dropdown">English
+            <div class="dropdown-content">
+                <a href="#">Hindi</a>
+                <a href="#">Marathi</a>
+                <a href="#">Gujrati</a>
+                <a href="#">Telugu</a>
+                <a href="#">Malayalam</a>
+            </div>
+        </div>
+        <a href="">Epaper</a> &nbsp;
+        <a href="">GadgetNow</a>
+        <p>SIGN IN
+            <i class='fab'>&#xf099; </i>
+            <i class='fab'>&#xf09a; </i>
+            <i class='fab'>&#xf1eb; </i>
+            <i class='fab'>&#xf167; </i>
+
+        </p>
+    </div>
+
+    <hr>
+    <div class="title">
+        <h1> THE TIMES OF INDIA </h1>
+        <h2>Pune &#xf6c4; 25° C</h2>
+    </div>
+
+    <div class="nav" id="nav">
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <button>
+                    <input type="text">
+                    Search <i class='fas'>&#xf002;</i>
+                </button>
+            </div>
+        </div>
+        <a href="#home"> &#xf015;</a>
+        <a href="">Latest News</a>
+        <a href="">Most Shared</a>
+        <a href="">Most Read</a>
+        <a href="">Most Commented</a>
+        <a href="">Delhi Elections</a>
+        <a href="">Bihar Elections</a>
+        <span style="cursor:pointer;float: right;" onclick="openNav()">&#xf002;</span>
+    </div>
+
+
+    <h6 style="padding: 0% 200px;">News > Latest News</h6>
+    <h2 style="padding: 0% 200px;">LATEST NEWS</h2>
+    <hr>
+    <div class="content">
+        <div class="main">
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+            <img src="news.jpg" alt="">
+            <h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, cum!</p>
+            </h4>
+            <h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime sapiente
+                    autem, minima quae, dolore eum ducimus debitis quasi? Iusto, eveniet voluptatum nobis amet cumque
+                    sit Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo repudiandae quis veritatis.
+                    Praesentium autem quis molestias inventore modi, quas quisquam.
+                </p>
+            </h6>
+            <hr>
+            <br>
+
+
+            <div class="button">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+            </div>
+
+        </div>
+
+
+        <div class="side">
+            <h4>MOST POPULAR</h4>
+            <div class="sidenav">
+                <a href="">SHARED</a>
+                <a href="">COMMENTED</a>
+                <a href="">READ</a>
+                <a href="">TRENDING</a>
+            </div>
+
+            <h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, aperiam magni minus dolorum quas
+                    culpa.
+                </p>
+            </h6>
+            <hr>
+
+            <h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, aperiam magni minus dolorum quas
+                    culpa.
+                </p>
+            </h6>
+            <hr>
+
+            <h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, aperiam magni minus dolorum quas
+                    culpa.
+                </p>
+            </h6>
+            <hr>
+
+            <h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, aperiam magni minus dolorum quas
+                    culpa.
+                </p>
+            </h6>
+            <hr>
+
+            <h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, aperiam magni minus dolorum quas
+                    culpa.
+                </p>
+            </h6>
+
+            <h3 style="padding: 5px 0px;">Entertainment News</h3>
+            <hr style="height: 2px;border: none;background-color: black;">
+
+
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+
+            <h3 style="padding: 5px 0px;">Business News</h3>
+            <hr style="height: 2px;border: none;background-color: black;">
+
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+
+
+            <h3 style="padding: 5px 0px;">TV News</h3>
+            <hr style="height: 2px;border: none;background-color: black;">
+
+
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+
+
+            <h3 style="padding: 5px 0px;"> News</h3>
+            <hr style="height: 2px;border: none;background-color: black;">
+
+
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+            <div class="section">
+                <img src="news.jpg" alt="">
+                <h6>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi ut ullam rem velit maxime
+                        sapiente
+                    </p>
+                </h6>
+                <br>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    <div class="link">
+        <div class="l1">
+            <div class="l2">
+                <a href="">The Economic Times</a>
+                <a href="">Hindi Economic Times</a>
+                <a href="">Navbharat Times</a>
+                <a href="">Maharashtra Times</a>
+                <a href="">Vijaya Times</a>
+                <a href="">Telugu Samayam</a>
+                <a href="">Malayalam Samayam</a>
+                <a href="">Ei Samay</a>
+            </div>
+            <div class="l2">
+                <a href="">I am Gujarat</a>
+                <a href="">Times Now</a>
+                <a href="">Times Now Hindi</a>
+                <a href="">TimesPoints</a>
+                <a href="">Indiatimes</a>
+                <a href="">Brand Capital</a>
+                <a href="">Education Times</a>
+                <a href="">Times Food</a>
+            </div>
+            <div class="l2">
+                <a href="">Miss Kyra</a>
+                <a href="">Mumbai Mirror</a>
+                <a href="">Pune Mirror</a>
+                <a href="">Ahmedabad Mirror</a>
+                <a href="">Bangalore Mirror</a>
+                <a href="">MX Player</a>
+                <a href="">Hindi Podcast</a>
+                <a href="">Bengali Podcast</a>
+            </div>
+        </div>
+        <div class="l1">
+            <div class="l2">
+                <a href="">Ads 2 Book</a>
+                <a href=""> Bank Exam App</a>
+                <a href="">ET Money Finance</a>
+                <a href="">CoupponDunia</a>
+                <a href="">Dineout</a>
+            </div>
+            <div class="l2">
+                <a href="">Magicbricks</a>
+                <a href="">Techgig</a>
+                <a href="">Bollywood News</a>
+                <a href="">Times Jobs</a>
+                <a href="">Times Mobile</a>
+            </div>
+            <div class="l2">
+                <a href="">Remot 2 India</a>
+                <a href="">TC Next</a>
+                <a href="">Astro Speak</a>
+                <a href="">GadgetNow</a>
+                <a href=""> Careers</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        copyright
+    </div>
+
+
+
+    <script>
+        window.onscroll = function () {
+            fun()
+        };
+
+        let nav = document.getElementById('nav');
+
+        let stick = nav.offsetTop;
+
+        function fun() {
+            if (window.pageYOffset >= stick) {
+                nav.classList.add("stick");
+            }
+            else {
+                nav.classList.remove("stick")
+            }
+        }
+
+        function openNav() {
+            document.getElementById("myNav").style.height = "30%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.height = "0%";
+        }
+
+
+    </script>
+</body>
+
+</html>
